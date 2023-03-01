@@ -45,3 +45,5 @@ function testDB() {
   //   }
   // });
 }
+
+export default app;
