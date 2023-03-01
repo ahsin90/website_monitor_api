@@ -2,7 +2,7 @@ import express from 'express';
 import { jwtVerify } from '../middleware/auth';
 import { createUser } from '../controllers/usersController';
 import { login } from '../controllers/loginController';
-
+import { me } from '../controllers/auth/meController';
 const router = express.Router();
 
 router.get('/', function (req, res) {
@@ -18,5 +18,6 @@ router.post('/login', login);
 router.use('/auth', jwtVerify);
 
 router.post('/auth/user', createUser);
+router.get('/auth/me', me);
 
 export default router;
