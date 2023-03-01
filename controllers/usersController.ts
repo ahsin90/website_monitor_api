@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import log from '../configs/winstonLogger';
 import bcrypt from 'bcrypt';
 import { make } from 'simple-body-validator';
 import UsersRepository from '../repositories/UsersRepository';
@@ -43,7 +44,7 @@ export const createUser = async (req: Request, res: Response) => {
       }
     }
   } catch (err) {
-    console.log(err);
+    log.error(`${err} :: ${__filename}`);
     res.status(400).json({ status: false, message: 'Errors!', errors: err });
   }
 };
