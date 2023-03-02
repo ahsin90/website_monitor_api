@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import log from '../configs/winstonLogger';
 import bcrypt from 'bcrypt';
 import { make } from 'simple-body-validator';
-import UsersRepository from '../repositories/UsersRepository';
+import UsersRepository from '../repositories/db/UsersRepository';
 
 export const createUser = async (req: Request, res: Response) => {
   try {

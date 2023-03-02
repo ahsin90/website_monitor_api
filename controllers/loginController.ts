@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import log from '../configs/winstonLogger';
 import bcrypt from 'bcrypt';
 import { make } from 'simple-body-validator';
-import UsersRepository from '../repositories/UsersRepository';
+import UsersRepository from '../repositories/db/UsersRepository';
 import * as dotenv from 'dotenv';
 dotenv.config();
 

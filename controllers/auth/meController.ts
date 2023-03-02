@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import log from '../../configs/winstonLogger';
-import UsersRepository from '../../repositories/UsersRepository';
+import UsersRepository from '../../repositories/db/UsersRepository';
 
 export const me = async (req: Request, res: Response) => {
   try {
