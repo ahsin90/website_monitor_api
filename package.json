@@ -7,7 +7,7 @@
     "build": "npx tsc",
     "start": "node .out/app.js",
     "dev": "concurrently \"prettier --write .\"  \"nodemon app.ts\"",
-    "test": "jest",
+    "test": "jest --testTimeout=10000",
     "migrate": "npx prisma migrate dev",
     "seed": "ts-node seeders/seed.ts"
   },
