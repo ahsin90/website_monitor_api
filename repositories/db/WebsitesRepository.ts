@@ -130,4 +130,53 @@ export default class WebsiteRepository {
       log.error(`${err} :: ${__filename}`);
     }
   };
+
+  history = async () => {
+    try {
+      const uuid = this.params.uuid;
+      const limit: number = this.query.limit ? +this.query.limit : 10;
+      const page: number = this.query.page ? +this.query.page : 0;
+      const search: any = this.query.search;
+
+      const isWeb = await this.getWebsiteByUUID(uuid);
+
+      if (isWeb) {
+        const results = await db.history.findMany({
+          skip: page,
+          take: limit,
+          where: {
+            websiteId: isWeb.id,
+            message: {
+              startsWith: search,
+            },
+          },
+          orderBy: [
+            {
+              createdAt: 'desc',
+            },
+          ],
+        });
+
+        const count = await db.history.count({
+          where: {
+            websiteId: isWeb.id,
+          },
+        });
+
+        const preData = {
+          rows: results,
+          count: count,
+        };
+
+        const pagination: Pagination = new Pagination(limit, page);
+        const data = pagination.data(preData);
+
+        return data;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      log.error(`${err} :: ${__filename}`);
+    }
+  };
 }

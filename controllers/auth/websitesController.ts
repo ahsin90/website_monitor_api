@@ -112,6 +112,23 @@ export const listWebsite = async (req: Request, res: Response) => {
   }
 };
 
+export const history = async (req: Request, res: Response) => {
+  try {
+    const webRepo: WebsiteRepository = new WebsiteRepository(req);
+
+    const web = await webRepo.history();
+    if (web) {
+      // write http response
+      res.status(200).json({ status: true, message: null, data: web });
+    } else {
+      throw constants.DATA_NOT_FOUND;
+    }
+  } catch (err) {
+    log.error(`${err} :: ${__filename}`);
+    res.status(400).json({ status: false, message: constants.SOMETHING_WRONG, errors: err });
+  }
+};
+
 export const deleteWebsite = async (req: Request, res: Response) => {
   try {
     const webRepo: WebsiteRepository = new WebsiteRepository(req);

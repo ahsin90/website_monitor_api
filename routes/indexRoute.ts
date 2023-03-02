@@ -9,6 +9,7 @@ import {
   getWebsiteByUUID,
   listWebsite,
   deleteWebsite,
+  history,
 } from '../controllers/auth/websitesController';
 
 const router = express.Router();
@@ -33,5 +34,6 @@ router.put('/auth/websites/update/:uuid', updateWebsite);
 router.get('/auth/websites/get/:uuid', getWebsiteByUUID);
 router.get('/auth/websites/list', listWebsite);
 router.delete('/auth/websites/delete/:uuid', deleteWebsite);
+router.get('/auth/websites/history/:uuid', history);
 
 export default router;
