@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import router from './routes/indexRoute';
-// import db from './configs/database';
+import { cronHistory, testFetch } from './cron/historyCron';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -17,6 +17,9 @@ app.use(
 );
 
 app.use(router);
+
+// run cronjob
+cronHistory();
 
 Promise.all([testDB()])
   .then((x) => {
