@@ -1,7 +1,8 @@
 import { config } from './conf';
 import supertest from 'supertest';
-import app from '../app';
-import * as fs from 'fs';
+// import app from '../app';
+
+const app = config.urlTest;
 
 let request: any;
 let token: string = '';
